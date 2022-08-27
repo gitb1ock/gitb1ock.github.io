@@ -172,7 +172,7 @@
             </span>
             <span class="reading-time">
               <i class="fa fa-clock-o" aria-hidden="true"></i>
-              阅读时间：0 分钟
+              阅读时间：3 分钟
             </span>
           </div>
           
@@ -188,8 +188,91 @@
 
       <div>
         
-        <p><img src="https://gitb1ock.github.io/pics/GenericList.png" alt="image"></p>
-
+        <h2 id="泛型">
+  泛型
+  <a class="heading-link" href="#%e6%b3%9b%e5%9e%8b">
+    <i class="fa fa-link" aria-hidden="true"></i>
+  </a>
+</h2>
+<h3 id="pecs原则">
+  PECS原则
+  <a class="heading-link" href="#pecs%e5%8e%9f%e5%88%99">
+    <i class="fa fa-link" aria-hidden="true"></i>
+  </a>
+</h3>
+<p>如果要从集合中读取类型T的数据，并且不能写入，可以使用 ? extends 通配符；(Producer Extends)
+如果要从集合中写入类型T的数据，并且不需要读取，可以使用 ? super 通配符；(Consumer Super)
+如果既要存又要取，那么就不要使用任何通配符。</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>  private static &lt;E extends Comparable&lt;? super E&gt;&gt; E max(List&lt;? extends E&gt; e1) {
+</span></span><span style="display:flex;"><span>      if (e1 == null){
+</span></span><span style="display:flex;"><span>          return null;
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>      //迭代器返回的元素属于 E 的某个子类型
+</span></span><span style="display:flex;"><span>      Iterator&lt;? extends E&gt; iterator = e1.iterator();
+</span></span><span style="display:flex;"><span>      E result = iterator.next();
+</span></span><span style="display:flex;"><span>      while (iterator.hasNext()){
+</span></span><span style="display:flex;"><span>          E next = iterator.next();
+</span></span><span style="display:flex;"><span>          if (next.compareTo(result) &gt; 0){
+</span></span><span style="display:flex;"><span>              result = next;
+</span></span><span style="display:flex;"><span>          }
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>      return result;
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><p>&lt;E extends Comparable&lt;? super E&raquo;用来定义该方法入参 List&lt;? extends E&gt; e1 中的E的类型，由于max函数需要进行比较，所以入参需要实现Comparable接口的compareTo方法，也就是Comparable接口的实现类(extends Comparable&lt;&gt;)。Comparable&lt;&gt;是泛型接口，compareTo方法消费入参E(只写入不读取)，所以泛型使用? super E，入参List&lt;? extends E&gt; e1表示接受上界为E的List，即元素为E及其子类的List。</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>        List&lt;? extends Number&gt; list = new ArrayList&lt;&gt;();
+</span></span><span style="display:flex;"><span>        list.add(null);
+</span></span><span style="display:flex;"><span>        list.add(1); //无法编译 该List只能加入Null值
+</span></span><span style="display:flex;"><span>        List&lt;? super Number&gt; list = new ArrayList&lt;&gt;();
+</span></span><span style="display:flex;"><span>        //该List可以存储Number及其子类
+</span></span></code></pre></div><p><img src="https://gitb1ock.github.io/pics/GenericList.png" alt="image"></p>
+<p>在调用泛型方法时，可以指定泛型，也可以不指定泛型: 在不指定泛型的情况下，泛型变量的类型为该方法中的几种类型的同一父类的最小级，直到Object 在指定泛型的情况下，该方法的几种类型必须是该泛型的实例的类型或者其子类</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>public class Test {  
+</span></span><span style="display:flex;"><span>    public static void main(String[] args) {  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        /**不指定泛型的时候*/  
+</span></span><span style="display:flex;"><span>        int i = Test.add(1, 2); //这两个参数都是Integer，所以T为Integer类型  
+</span></span><span style="display:flex;"><span>        Number f = Test.add(1, 1.2); //这两个参数一个是Integer，一个是Float，所以取同一父类的最小级，为Number  
+</span></span><span style="display:flex;"><span>        Object o = Test.add(1, &#34;asd&#34;); //这两个参数一个是Integer，一个是String，所以取同一父类的最小级，为Object  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        /**指定泛型的时候*/  
+</span></span><span style="display:flex;"><span>        int a = Test.&lt;Integer&gt;add(1, 2); //指定了Integer，所以只能为Integer类型或者其子类  
+</span></span><span style="display:flex;"><span>        int b = Test.&lt;Integer&gt;add(1, 2.2); //编译错误，指定了Integer，不能为Float  
+</span></span><span style="display:flex;"><span>        Number c = Test.&lt;Number&gt;add(1, 2.2); //指定为Number，所以可以为Integer和Float  
+</span></span><span style="display:flex;"><span>    }  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    //这是一个简单的泛型方法  
+</span></span><span style="display:flex;"><span>    public static &lt;T&gt; T add(T x,T y){  
+</span></span><span style="display:flex;"><span>        return y;  
+</span></span><span style="display:flex;"><span>    }  
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="类型检查">
+  类型检查
+  <a class="heading-link" href="#%e7%b1%bb%e5%9e%8b%e6%a3%80%e6%9f%a5">
+    <i class="fa fa-link" aria-hidden="true"></i>
+  </a>
+</h3>
+<p>类型检查就是针对引用的，谁是一个引用，用这个引用调用泛型方法，就会对这个引用调用的方法进行类型检测，而无关它真正引用的对象。</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>public class Test {  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    public static void main(String[] args) {  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        ArrayList&lt;String&gt; list1 = new ArrayList();  
+</span></span><span style="display:flex;"><span>        list1.add(&#34;1&#34;); //编译通过  
+</span></span><span style="display:flex;"><span>        list1.add(1); //编译错误  
+</span></span><span style="display:flex;"><span>        String str1 = list1.get(0); //返回类型就是String  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        ArrayList list2 = new ArrayList&lt;String&gt;();  
+</span></span><span style="display:flex;"><span>        list2.add(&#34;1&#34;); //编译通过  
+</span></span><span style="display:flex;"><span>        list2.add(1); //编译通过  
+</span></span><span style="display:flex;"><span>        Object object = list2.get(0); //返回类型就是Object  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        new ArrayList&lt;String&gt;().add(&#34;11&#34;); //编译通过  
+</span></span><span style="display:flex;"><span>        new ArrayList&lt;String&gt;().add(22); //编译错误  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        String str2 = new ArrayList&lt;String&gt;().get(0); //返回类型就是String  
+</span></span><span style="display:flex;"><span>    }  
+</span></span><span style="display:flex;"><span>} 
+</span></span></code></pre></div>
       </div>
 
 

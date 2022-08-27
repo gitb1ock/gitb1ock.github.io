@@ -13,7 +13,7 @@
       <pubDate>Thu, 21 Jul 2022 00:00:00 +0000</pubDate>
       
       <guid>https://gitb1ock.github.io/posts/my/</guid>
-      <description></description>
+      <description>泛型 PECS原则 如果要从集合中读取类型T的数据，并且不能写入，可以使用 ? extends 通配符；(Producer Extends) 如果要从集合中写入类型T的数据，并且不</description>
     </item>
     
     <item>

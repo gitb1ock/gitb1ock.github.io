@@ -51,7 +51,7 @@
                 />
   </url><url>
     <loc>https://gitb1ock.github.io/categories/</loc>
-    <lastmod>2022-05-15T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-11T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -64,19 +64,19 @@
                 />
   </url><url>
     <loc>https://gitb1ock.github.io/tags/css/</loc>
-    <lastmod>2022-05-15T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://gitb1ock.github.io/tags/html/</loc>
-    <lastmod>2022-05-15T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://gitb1ock.github.io/posts/html-and-css-only-tabs/</loc>
-    <lastmod>2022-05-15T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://gitb1ock.github.io/tags/markdown/</loc>
-    <lastmod>2022-05-15T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://gitb1ock.github.io/posts/markdown-syntax/</loc>
+    <lastmod>2019-03-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://gitb1ock.github.io/series/</loc>
-    <lastmod>2022-05-15T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-11T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -89,24 +89,15 @@
                 />
   </url><url>
     <loc>https://gitb1ock.github.io/categories/syntax/</loc>
-    <lastmod>2022-05-15T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://gitb1ock.github.io/categories/themes/</loc>
-    <lastmod>2022-05-15T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://gitb1ock.github.io/series/themes-guide/</loc>
-    <lastmod>2022-05-15T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://gitb1ock.github.io/posts/markdown-syntax/</loc>
     <lastmod>2019-03-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://gitb1ock.github.io/posts/more-rich-content/</loc>
-    <lastmod>2019-03-09T00:00:00+00:00</lastmod>
+    <loc>https://gitb1ock.github.io/categories/themes/</loc>
+    <lastmod>2019-03-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://gitb1ock.github.io/series/themes-guide/</loc>
+    <lastmod>2019-03-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://gitb1ock.github.io/posts/placeholder-text/</loc>
-    <lastmod>2019-03-09T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://gitb1ock.github.io/tags/shortcodes/</loc>
     <lastmod>2019-03-09T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://gitb1ock.github.io/tags/text/</loc>

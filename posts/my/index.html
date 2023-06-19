@@ -332,8 +332,8 @@
 </span></span></code></pre></div><p>而 toString 其实是又重新 new 了一个 String 对象，然后把对象给 s1，而所有的 new 操作都是在堆上开辟空间，所以此时字符串常量池只存放了&quot;1&quot;这个字面量(append(&ldquo;1&rdquo;))，而没有存放&quot;11&quot;。而 s1.intern()将&quot;11&quot; 存入了常量池，所以 s2 拿到的是常量池中字面量对象，s1 是堆上的引用，所以使用==判断为 false。</p>
 <p>jdk8(true):前面都差不多，但由于字符串常量池移动到 JAVA Heap 区域，常量池中可以直接存储堆中的引用。所以 s1.intern()直接存的是 s1 在堆上的引用，而 s2 拿的也是 s1 在堆上的引用，所以使用==判断为 true。</p>
 <p>jdk17(false):jdk8 和 jdk17 的内存划分没有什么大变化，但字符串拼接的方式从 jdk9 开始发生了改变，从原来的 StringBuilder 先 append 再 ToString，变成了使用 invokedynamic 指令和特殊的方法句柄来实现，应该也是因为这个 s1.intern()又存的不是堆上引用了，所以==判断为 false，原以为是这样，其实和这个没关系。
-<img src="https://gitb1ock.github.io/pics/VersionProps.png" alt="image">
-原因是因为 VersionProps 中有一些预定义的版本相关字面量，它们被提前存入了字符串常量池，所以在 s1.intern()时由于常量池中已经有了，就没有存了，而 s2 拿到的就是这些被提前存进去的字面量，==自然判断为 false。</p>
+<img src="https://gitb1ock.github.io/pics/VersionProps.png" alt="image"></p>
+<p>原因是因为 VersionProps 中有一些预定义的版本相关字面量，它们被提前存入了字符串常量池，所以在 s1.intern()时由于常量池中已经有了，就没有存了，而 s2 拿到的就是这些被提前存进去的字面量，==自然判断为 false。</p>
 
       </div>
 

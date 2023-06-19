@@ -13,7 +13,7 @@
       <pubDate>Thu, 21 Jul 2022 00:00:00 +0000</pubDate>
       
       <guid>https://gitb1ock.github.io/posts/my/</guid>
-      <description>泛型 PECS 原则 如果要从集合中读取类型 T 的数据，并且不能写入，可以使用 ? extends 通配符；(Producer Extends) 如果要从集合中写入类型 T 的数据，并且不需要读</description>
+      <description>泛型 链接到标题 PECS 原则 链接到标题 如果要从集合中读取类型 T 的数据，并且不能写入，可以使用 ? extends 通配符；(Producer Extends) 如果要从集合中写入类型 T</description>
     </item>
     
     <item>
@@ -31,9 +31,9 @@
       <pubDate>Sun, 15 May 2022 00:00:00 +0000</pubDate>
       
       <guid>https://gitb1ock.github.io/posts/html-and-css-only-tabs/</guid>
-      <description>Basic shortcodesThe following content:
+      <description>Basic shortcodes链接到标题The following content:
 {{&amp;lt; tabgroup &amp;gt;}} {{&amp;lt; tab name=&amp;#34;Hello&amp;#34; &amp;gt;}} Hello World! {{&amp;lt; /tab &amp;gt;}} {{&amp;lt; tab name=&amp;#34;Goodbye&amp;#34; &amp;gt;}} Goodbye Everybody! {{&amp;lt; /tab &amp;gt;}} {{&amp;lt; /tabgroup &amp;gt;}} Will generate:
-HelloHello World!GoodbyeGoodbye Everybody!Right alighmentYou can also align the tabs to the right:
+HelloHello World!GoodbyeGoodbye Everybody!Right alighment链接到标题You can also align the tabs to the right:
 {{&amp;lt; tabgroup align=&amp;#34;right&amp;#34; &amp;gt;}} {{&amp;lt; tab name=&amp;#34;Hello&amp;#34; &amp;gt;}} Hello World! {{&amp;lt; /tab &amp;gt;}} {{&amp;lt; tab name=&amp;#34;Goodbye&amp;#34; &amp;gt;}} Goodbye Everybody! {{&amp;lt; /tab &amp;gt;}} {{&amp;lt; /tabgroup &amp;gt;}} Giving you this look:</description>
     </item>
     

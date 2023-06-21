@@ -227,7 +227,7 @@
 </span></span><span style="display:flex;"><span>        list.add(1); //无法编译 该List只能加入Null值
 </span></span><span style="display:flex;"><span>        List&lt;? super Number&gt; list = new ArrayList&lt;&gt;();
 </span></span><span style="display:flex;"><span>        //该List可以存储Number及其子类
-</span></span></code></pre></div><p><img src="https://gitb1ock.github.io/pics/GenericList.png" alt="image"></p>
+</span></span></code></pre></div><p><img src="https://gitb1ock.github.io/zh-cn/pics/GenericList.png" alt="image"></p>
 <p>在调用泛型方法时，可以指定泛型，也可以不指定泛型: 在不指定泛型的情况下，泛型变量的类型为该方法中的几种类型的同一父类的最小级，直到 Object 在指定泛型的情况下，该方法的几种类型必须是该泛型的实例的类型或者其子类</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>public class Test {
 </span></span><span style="display:flex;"><span>    public static void main(String[] args) {
@@ -331,8 +331,8 @@
 </span></span><span style="display:flex;"><span>.toString()
 </span></span></code></pre></div><p>而 toString 其实是又重新 new 了一个 String 对象，然后把对象给 s1，而所有的 new 操作都是在堆上开辟空间，所以此时字符串常量池只存放了&quot;1&quot;这个字面量(append(&ldquo;1&rdquo;))，而没有存放&quot;11&quot;。而 s1.intern()将&quot;11&quot; 存入了常量池，所以 s2 拿到的是常量池中字面量对象，s1 是堆上的引用，所以使用==判断为 false。</p>
 <p>jdk8(true):前面都差不多，但由于字符串常量池移动到 JAVA Heap 区域，常量池中可以直接存储堆中的引用。所以 s1.intern()直接存的是 s1 在堆上的引用，而 s2 拿的也是 s1 在堆上的引用，所以使用==判断为 true。</p>
-<p>jdk17(false):jdk8 和 jdk17 的内存划分没有什么大变化，但字符串拼接的方式从 jdk9 开始发生了改变，从原来的 StringBuilder 先 append 再 ToString，变成了使用 invokedynamic 指令和特殊的方法句柄来实现，应该也是因为这个 s1.intern()又存的不是堆上引用了，所以==判断为 false，原以为是这样，其实和这个没关系。
-<img src="https://gitb1ock.github.io/pics/VersionProps.png" alt="image"></p>
+<p>jdk17(false):jdk8 和 jdk17 的内存划分没有什么大变化，但字符串拼接的方式从 jdk9 开始发生了改变，从原来的 StringBuilder 先 append 再 ToString，变成了使用 invokedynamic 指令和特殊的方法句柄来实现，应该也是因为这个 s1.intern()又存的不是堆上引用了，所以==判断为 false，原以为是这样，其实和这个没关系。</p>
+<p><img src="https://gitb1ock.github.io/zh-cn/pics/VersionProps.png" alt="image"></p>
 <p>原因是因为 VersionProps 中有一些预定义的版本相关字面量，它们被提前存入了字符串常量池，所以在 s1.intern()时由于常量池中已经有了，就没有存了，而 s2 拿到的就是这些被提前存进去的字面量，==自然判断为 false。</p>
 
       </div>
